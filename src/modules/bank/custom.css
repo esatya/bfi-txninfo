@@ -1,0 +1,11 @@
+.form-control {
+    width: 50% !important;
+    margin: auto !important;
+}
+
+.btn-info {
+    background-color: #2b7ec1;
+    border-color: #2b7ec1;
+    box-shadow: 0px 4px 15px 3px rgb(83 167 216 / 15%);
+    border-radius: 8px;
+}
