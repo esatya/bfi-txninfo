@@ -71,11 +71,11 @@ export default {
 	saveAddress(address) {
 		localStorage.setItem('address', address);
 		return this.save('address', address);
-  },
-  
-  savePrivateKey(privateKey) {
-    return this.save('privateKey', privateKey);
-  },
+	},
+
+	savePrivateKey(privateKey) {
+		return this.save('privateKey', privateKey);
+	},
 
 	getAddress() {
 		return this.get('address');
