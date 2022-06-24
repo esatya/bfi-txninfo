@@ -3,11 +3,13 @@ import React from 'react';
 // import { History } from '../utils/History';
 // import indexRoutes from '../routes';
 // import { PrivateRoute } from '../routes/PrivateRoutes';
-import BankInterface from './bank';
+import BankInterface from '../modules/bank';
+import Header from '../layouts/layout-components/header/Header';
 
 const App = () => {
 	return (
 		<>
+			<Header />
 			<BankInterface />
 			{/* <Router history={History}>
 				<Switch>
