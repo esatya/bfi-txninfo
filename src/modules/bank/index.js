@@ -1,13 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState,useCallback } from 'react';
 import './custom.css';
 
 import { Card, CardBody, Row, Col, Table, CustomInput, CardTitle, Modal, ModalBody, Input, Button } from 'reactstrap';
 
 import Balance from '../ui_components/balance';
+import { getFsp } from '../../services/fsp';
+import rahatLogo from '../../assets/images/rahat-logo.png';
 
 export default function DetailsForm(props) {
 	const [show, setShow] = useState(false);
+	const [bank, setBank] = useState(null);
 	const toggleModal = () => setShow(!show);
+    const { biscode,projectId } = props.match.params;
+	const fetchBankInfo = useCallback(async () => {
+		const {data} = await getFsp(biscode);
+		setBank(data);
+		// const project = await getProjectDetails(projectId);
+		// console.log({bank,project})
+	},[biscode])
+
+	useEffect(() => { fetchBankInfo() }, [fetchBankInfo]);
+
 	return (
 		<>
 			<Modal centered isOpen={show} toggle={toggleModal}>
@@ -37,20 +50,20 @@ export default function DetailsForm(props) {
 								<Col md="12" sm="8" style={{ marginBottom: '10px' }}>
 									<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}>
 										<img
-											src={'https://assets.rumsan.com/esatya/nabil-bank-logo.png'}
+											src={bank?.logoUrl || rahatLogo}
 											alt="user"
 											className="rounded-circle"
 											width="45"
 											height="45"
 										/>
-										<div style={{ marginLeft: '20px' }}>
-											<p className="card-font-medium">Nabil Bank Limited</p>
+										<div>
+											<p className="card-font-medium">{bank?.name || '-'}</p>
 											<div className="sub-title">Name</div>
 										</div>
-										<div style={{ marginLeft: '20px' }}>
+										{/* <div style={{ marginLeft: '20px' }}>
 											<p className="card-font-medium">Sanepa</p>
 											<div className="sub-title">Branch</div>
-										</div>
+										</div> */}
 									</div>
 								</Col>
 							</Row>

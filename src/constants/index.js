@@ -1,10 +1,12 @@
 const API_SERVER = process.env.REACT_APP_API_SERVER;
+const BANK_REGISTRY_API = process.env.REACT_APP_BANK_REGISTRY_API;
 
 module.exports = {
 	CURRENCY: {
 		NP_RUPEES: 'NPR'
 	},
 	API_SERVER,
+	BANK_REGISTRY_API,
 	WSS_SERVER: API_SERVER.replace('http', 'ws'),
 	WSS_EVENTS: {
 		welcome: 'welcome',
